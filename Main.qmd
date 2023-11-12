@@ -1,0 +1,214 @@
+---
+format: pdf
+pdf-engine: xelatex
+toc: true
+toc-depth: 4
+toc-title: "Table of Contents"
+toc-location: body
+code-line-numbers: true
+number-sections: true
+mainfont: Inter
+mathfont: Fira Math
+sansfont: Inter
+keep-tex: true
+colorlinks: true
+include-in-header: 
+  text: |
+    \usepackage{amsmath, xparse}
+    \usepackage{fancyvrb, fvextra}
+    \usepackage{unicode-math}
+    \usepackage{svg}
+    \usepackage{multicol}
+    \usepackage{listings}
+    \usepackage{systeme}
+    \usepackage{bm}
+    \usepackage{xifthen}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}  
+    \lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}
+    \newcommand\rowop[1]{\scriptstyle\smash{\xrightarrow[\vphantom{#1}]{\mkern-4mu#1\mkern-4mu}}}
+    \DeclareDocumentCommand\converttorows%
+    {>{\SplitList{,}}m}%
+    {\ProcessList{#1}{\converttorow}}
+    \NewDocumentCommand{\converttorow}{m}
+    {\ifthenelse{\isempty{#1}}{}{\rowop{#1}}\\}
+
+    \DeclareDocumentCommand \rowops{m}
+    {\;
+    \begin{matrix}
+    \converttorows {#1}
+    \end{matrix}
+    \; }
+
+include-before-body: 
+  text: |
+    \input{./title.tex}
+    \newpage
+---
+
+{{< pagebreak >}}
+
+# Does the following set of column vectors form a basis for $R^3$?:
+$\symbf{\left\{ \ \ \begin{bmatrix}1 \\ 0 \\ 2\end{bmatrix}, \begin{bmatrix}3 \\ 2 \\ -4\end{bmatrix}, \begin{bmatrix}-3 \\ -5 \\ 1\end{bmatrix} \ \ \right\}}$
+
+Point out ***each*** of the requirements for whether a set is a basis and how these three vectors meet or do not meet each of them.
+
+
+If it succeeds to form a basis, tell me how it fulfills each requirement. If it fails, tell me how it fails and succeeds for each requirement.
+
+## Requirement 1: The set of vectors are linearly independent
+Let's put the vectors into a matrix and check the determinant:
+\begin{align*}
+&\det\left(\begin{bmatrix}1 & 3 & -3 \\ 0 & 2 & -5 \\ 2 & -4 & 1 \end{bmatrix}\right) \\
+&= \det\left(\begin{bmatrix}2 & -5 \\ -4 & 1\end{bmatrix}\right)-3\det\left(\begin{bmatrix}0 & -5 \\ 2 & 1\end{bmatrix}\right) + (-3)\det\left(\begin{bmatrix}0 & 2 \\ 2 & -4\end{bmatrix}\right) \\
+&= (2\cdot 20)-3(0\cdot -10)-3(0\cdot -4) \\
+&= 40-3(0)-3(0) \\
+&= 40
+\end{align*}
+Since $40 \ne 0$, the vectors are **linearly independent**.
+
+## Requirement 2: The set of vectors span $R^3$
+Let's check the rank of the previous matrix:
+\begin{align*}
+\mathrm{rref}\left(\begin{bmatrix}1 & 3 & -3 \\ 0 & 2 & -5 \\ 2 & -4 & 1 \end{bmatrix}\right) &= \begin{bmatrix}1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}
+\end{align*}
+Since the rank is 3, the vectors **span $\symbf{R^3}$**.
+
+Therefore, the set of vectors form a **basis for $\symbf{R^3}$**.
+
+{{< pagebreak >}}
+
+# $\symbf{A}$ is a non-zero $\symbf{11 \times 7}$ matrix
+What is the largest possible ***rank*** of $A$? What is the smallest? **Why?**
+
+The **largest possible rank** of $A$ is $\mathrm{min}⁡(11,7) = \symbf{7}$ because the minimum of the number of rows and columns determines the maximum number of linearly independent rows. The **smallest possible rank** of $A$ is **1**, which occurs when all the rows/columns of $A$ are multiples of each other. 
+
+What is the largest possible ***nullity*** of $A$? **Why?**
+
+The largest possible nullity of $A$ is the maximum number of linearly independent columns that can be added to $A$ before it becomes singular. This gives us the following relationship:  $\text{maximum nullity}+\text{minimum rank}=\text{number of rows}$. Because the minimum rank is 1, **the maximum nullity is 6** because $1+6=7$.
+
+{{< pagebreak >}}
+
+
+Make me a particular example of the above matrix, $\symbf{A}$, that has a rank of **4**.
+
+$\begin{bmatrix} 1 & 0 & 0 & 0 & 0 & 0 & 0\\ 0 & 1 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 & 0 \\  0 & 0 & 0 & 0 & 0 & 0 & 0  \\  0 & 0 & 0 & 0 & 0 & 0 & 0  \\  0 & 0 & 0 & 0 & 0 & 0 & 0  \\  0 & 0 & 0 & 0 & 0 & 0 & 0  \\  0 & 0 & 0 & 0 & 0 & 0 & 0 \\  0 & 0 & 0 & 0 & 0 & 0 & 0 \end{bmatrix}$
+
+What is the nullity of your example?
+
+The **nullity** is **3**.
+
+{{< pagebreak >}}
+
+# $\symbf{A = \begin{bmatrix}2 & 2 & 1 & 4 & -1 & 6 \\ 4 & 4 & 6 & 0 & 5 & -8 \\ -4 & -4 & -10 & 8 & -12 & 28 \\ 0 & 0 & -12 & 24 & -21 & 60\end{bmatrix}}$
+
+\begin{align*}
+\mathrm{rref}(A) = \begin{bmatrix}2 & 2 & 1 & 4 & -1 & 6 \\ 4 & 4 & 6 & 0 & 5 & -8 \\ -4 & -4 & -10 & 8 & -12 & 28 \\ 0 & 0 & -12 & 24 & -21 & 60 \end{bmatrix} \rowops{\frac{1}{2}R_1,,,} \begin{bmatrix} 1 & 1 & \frac{1}{2} & 2 & -\frac{1}{2} & 3 \\ 4 & 4 & 6 & 0 & 5 & -8 \\ -4 & -4 & -10 & 8 & -12 & 28 \\ 0 & 0 & -12 & 24 & -21 & 60 \end{bmatrix} \rowops{,R_2-4R_1,R_3+4R_1,} \\
+\begin{bmatrix} 1 & 1 & \frac{1}{2} & 2 & -\frac{1}{2} & 3 \\ 0 & 0 & 4 & -8 & 7 & -20 \\ 0 & 0 & -8 & 16 & -14 & 40 \\ 0 & 0 & -12 & 24 & -21 & 60 \end{bmatrix} \rowops{,,R_3+2R_2,} \begin{bmatrix} 1 & 1 & \frac{1}{2} & 2 & -\frac{1}{2} & 3 \\ 0 & 0 & 4 & -8 & 7 & -20 \\ 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & -12 & 24 & -21 & 60 \end{bmatrix} \rowops{,,,R_4+3R_2} \\
+\begin{bmatrix} 1 & 1 & \frac{1}{2} & 2 & -\frac{1}{2} & 3 \\ 0 & 0 & 4 & -8 & 7 & -20 \\ 0 & 0 & 0 & 0 & 0  & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 \end{bmatrix} \rowops{,\frac{1}{4}R_2,,}\begin{bmatrix}1 & 1 & \frac{1}{2} & 2 & -\frac{1}{2} & 3 \\ 0 & 0 & 1 & -2 & \frac{7}{4} & -5 \\ 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 \end{bmatrix} \rowops{R_1-\frac{1}{2}R_2,,,} \begin{bmatrix} 1 & 1 & 0 & 3 & -\frac{11}{8} & \frac{11}{2} \\ 0 & 0 & 1 & -2 & \frac{7}{4} & -5 \\ 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 \end{bmatrix}
+\end{align*}
+
+Find [**and justify**]{.underline} each of the following:
+
+a. Set of vectors that form a basis for the column space of $A$
+
+We know that the column space of $A$ is equivalent to:
+
+$\mathrm{span}\left(\begin{bmatrix}1 \\ 0 \\ 0 \\ 0\end{bmatrix},\begin{bmatrix}1 \\ 0 \\ 0 \\ 0\end{bmatrix},\begin{bmatrix}0\\1\\0\\0\end{bmatrix},\begin{bmatrix}3\\-2\\0\\0\end{bmatrix},\begin{bmatrix}-\frac{11}{8}\\ \frac{7}{4}\\0\\0\end{bmatrix},\begin{bmatrix}\frac{11}{2}\\-5\\0\\0\end{bmatrix}\right)$
+
+So, in order to get a basis for the column space, we just need to identify which vectors in the span are linearly independent. We can do this by looking at the rref of $A$ and identifying which columns have pivots. The columns with pivots are the linearly independent columns, and the columns without pivots are linearly dependent. Therefore, the basis for the column space of $A$ is:
+
+$\left\{\begin{bmatrix}1 \\ 0 \\ 0 \\ 0\end{bmatrix},\begin{bmatrix}0 \\ 1 \\ 0 \\ 0\end{bmatrix}\right\}$
+
+{{< pagebreak >}}
+
+b. Set of vectors that form a basis for the row space of $A$
+
+We know that the row space of $A$ is equivalent to:
+
+$\mathrm{span}\left(\begin{bmatrix}1 \\ 1 \\ \frac{1}{2} \\ 2 \\ -\frac{1}{2} \\ 3\end{bmatrix},\begin{bmatrix}0 \\ 0 \\ 1 \\ -2 \\ \frac{7}{4} \\ -5\end{bmatrix},\begin{bmatrix}0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0\end{bmatrix} \right)$
+
+So, in order to get a basis for the row space, we just need to identify which vectors in the span are linearly independent. We can do this by looking at the rref of $A$ and identifying which rows are non-zero. The non-zero rows are the linearly independent rows, and the zero rows are linearly dependent. Therefore, the basis for the row space of $A$ is:
+
+$\left\{\begin{bmatrix}1 \\ 1 \\ \frac{1}{2} \\ 2 \\ -\frac{1}{2} \\ 3\end{bmatrix},\begin{bmatrix}0 \\ 0 \\ 1 \\ -2 \\ \frac{7}{4} \\ -5\end{bmatrix}\right\}$
+
+c. Set of vectors that form a basis for the null space of $A$
+
+We can represent $A$ as a system of equations:
+
+\systeme*{x_1 = -x_2-3x_4+\frac{11}{8}x_5-\frac{11}{2}x_6, x_2 = x_2, x_3 = 2x_4-\frac{7}{4}x_5+5x_6, x_4=x_4, x_5=x_5, x_6=x_6}
+
+$\Rightarrow \vec{x} = \begin{bmatrix}x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \\ x_6\end{bmatrix}=\begin{bmatrix}-x_2-3x_4+\frac{11}{8}x_5-\frac{11}{2}x_6 \\ x_2 \\ 2x_4-\frac{7}{4}x_5+5x_6 \\ x_4 \\ x_5 \\ x_6\end{bmatrix}=x_2\begin{bmatrix}-1 \\ 1 \\ 0 \\ 0 \\ 0 \\ 0\end{bmatrix}+x_4\begin{bmatrix}-3 \\ 0 \\ 2 \\ 1 \\ 0 \\ 0\end{bmatrix}+x_5\begin{bmatrix}\frac{11}{8}\\ 0 \\ -\frac{7}{4} \\ 0 \\ 1 \\ 0\end{bmatrix}+x_6\begin{bmatrix}-\frac{11}{2} \\ 0 \\ 5 \\ 0 \\ 0 \\ 1\end{bmatrix}$
+
+{{< pagebreak >}}
+
+Therefore, the basis of the null space can be represented with the following set:
+
+$\left\{\begin{bmatrix}-1 \\ 1 \\ 0 \\ 0 \\ 0 \\ 0\end{bmatrix}, \begin{bmatrix}-3 \\ 0 \\ 2 \\ 1 \\ 0 \\ 0\end{bmatrix}, \begin{bmatrix}\frac{11}{8}\\ 0 \\ -\frac{7}{4} \\ 0 \\ 1 \\ 0\end{bmatrix}, \begin{bmatrix}-\frac{11}{2} \\ 0 \\ 5 \\ 0 \\ 0 \\ 1\end{bmatrix}\right\}$
+
+d. Rank of $A$
+
+The rank of $A$ is just the **dimension** of the column space basis of $A$. There are two elements in the basis set for the column space of $A$, so the rank of $A$ is **2**.
+
+e. Nullity of $A$
+
+The nullity of $A$ is just the **dimension** of the null space basis of $A$. There are four elements in the basis set for the null space of $A$, so the nullity of $A$ is **4**.
+
+{{< pagebreak >}}
+
+# Prove the following:
+**If a matrix $\symbf{A}$ is not square, then either the row vectors or the column vectors of $A$ are linearly dependent.**
+
+I'm going to take an unconventional approach to this proof. Consider a matrix $A$ with dimensions $m \times n$ where $m > n$. Let $\symbf{r_1, r_2, ..., r_m}$ represent the row vectors of $A$. If any of the row vectors are the zero vector or equal, they are linearly dependent by default.
+
+In that case, let's assume none of the row vectors are zero vectors or equivalent to one another. Since $m \ne n$, at least two row vectors must have more components than the possible columns of the matrix by the Pigeonhole Principle. This implies that there exist constants $c_1, c_2, ... c_m$ not all zero, such that:
+
+$c_1\symbf{r_1}+c_2\symbf{r_2}+ ... + c_m\symbf{r_m} = \symbf{0}$
+
+This is a non-trivial linear combination of the row vectors that equals the zero vector, making the row vectors **linearly dependent.**
+
+But that's only for $m > n$. What about $m < n$?
+
+Well, similar to the approach for the row vectors, if any of the column vectors is a zero vector, they are linearly dependent. Otherwise, if any two column vectors are equal, they are linearly dependent because one can be expressed as a multiple of the other. By the Pigeonhole Principle, at least two column vectors must have more components than the number of rows. This implies that there exist constants $d_1, d_2, ..., d_n$ not all zero, such that:
+
+$d_1\symbf{c_1}+d_2\symbf{c_2}+ ... +d_n\symbf{c_n} = \symbf{0}$
+
+Yet again, this is a non-trivial linear combination of the column vectors that equals the zero vector, making the column vectors linearly dependent.
+
+Therefore, if $A$ is not square, at least one set of vectors (depending on the values of $m$ and $n$) must be linearly dependent.
+
+{{< pagebreak >}}
+
+# Can you go backwards?
+I have a matrix that has a [**row space**]{.underline} given by all vectors of the form:
+
+$\langle -4t + 5w - 3s, 2w + s, 3t + 4w \rangle$
+
+Provide for me a matrix that has this row space.
+
+We can decomponentize the vectors to get:
+
+$\begin{bmatrix}-4 \\ 0 \\ 3\end{bmatrix}t + \begin{bmatrix}5 \\ 2 \\ 4\end{bmatrix}w + \begin{bmatrix}-3 \\ 1 \\ 0\end{bmatrix}s$
+
+Since these vectors form the row space, we know that they have to be linearly independent. Therefore, we can use them as the rows of a matrix to get:
+
+$\begin{bmatrix}-4 & 0 & 3 \\ 5 & 2 & 4 \\ -3 & 1 & 0\end{bmatrix}$
+
+*Bonus*: Provide for me a matrix that has this [**null space**]{.underline}.
+
+$\begin{bmatrix}-4 \\ 0 \\ 3\end{bmatrix}t + \begin{bmatrix}5 \\ 2 \\ 4\end{bmatrix}w + \begin{bmatrix}-3 \\ 1 \\ 0\end{bmatrix}s \Rightarrow \begin{bmatrix}-4t+5w-3s \\ 2w + s \\ 3t + 4w\end{bmatrix}=\begin{bmatrix}x_1 \\ x_2 \\ x_3\end{bmatrix} =$ \systeme*[x_1x_2x_3tws]{x_1 + 4t + 5w -3s = 0, x_2 - 2w - s = 0, x_3 - 3t - 4w = 0}
+
+Which gives us the following matrix:
+
+$\begin{bmatrix}1 & 4 & 5 & - 3\\ 0 & 1 & -2 & -1 \end{bmatrix}$
+
+{{< pagebreak >}}
+
+{{< pagebreak >}}
+
+# Connect the following equivalent statements together with an explanation of how one statement implies the other.
+1. $\symbf{A}x = b$ has exactly one solution for every $n \times 1$ matrix $b$
+2. $\det{(A)} \neq 0$ 
+3. The columns of $A$ are linearly independent
+4. The column vectors of $A$ span $R^n$
+5. $A$ has nullity 0
+
