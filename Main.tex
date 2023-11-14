@@ -181,7 +181,7 @@
 \input{./title.tex}
 \newpage
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, borderline west={3pt}{0pt}{shadecolor}, interior hidden, breakable, boxrule=0pt, frame hidden, sharp corners]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, boxrule=0pt, sharp corners, enhanced, interior hidden, breakable, frame hidden]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of Contents}
 {
@@ -191,10 +191,10 @@
 }
 \newpage{}
 
-\hypertarget{does-the-following-set-of-column-vectors-form-a-basis-for-r3}{%
+\hypertarget{does-the-following-set-of-column-vectors-form-a-basis-for-mathbfr3}{%
 \section{\texorpdfstring{Does the following set of column vectors form a
 basis for
-\(R^3\)?:}{Does the following set of column vectors form a basis for R\^{}3?:}}\label{does-the-following-set-of-column-vectors-form-a-basis-for-r3}}
+\(\mathbf{R^3}\)?}{Does the following set of column vectors form a basis for \textbackslash mathbf\{R\^{}3\}?}}\label{does-the-following-set-of-column-vectors-form-a-basis-for-mathbfr3}}
 
 \(\symbf{\left\{ \ \ \begin{bmatrix}1 \\ 0 \\ 2\end{bmatrix}, \begin{bmatrix}3 \\ 2 \\ -4\end{bmatrix}, \begin{bmatrix}-3 \\ -5 \\ 1\end{bmatrix} \ \ \right\}}\)
 
@@ -215,7 +215,7 @@ Let's put the vectors into a matrix and check the determinant:
 &= \det\left(\begin{bmatrix}2 & -5 \\ -4 & 1\end{bmatrix}\right)-3\det\left(\begin{bmatrix}0 & -5 \\ 2 & 1\end{bmatrix}\right) + (-3)\det\left(\begin{bmatrix}0 & 2 \\ 2 & -4\end{bmatrix}\right) \\
 &= (2\cdot 20)-3(0\cdot -10)-3(0\cdot -4) \\
 &= 40-3(0)-3(0) \\
-&= 40
+&= 40 
 \end{align*} Since \(40 \ne 0\), the vectors are \textbf{linearly
 independent}.
 
@@ -228,7 +228,8 @@ Let's check the rank of the previous matrix: \begin{align*}
 \end{align*} Since the rank is 3, the vectors \textbf{span
 \(\symbf{R^3}\)}.
 
-Therefore, the set of vectors form a \textbf{basis for \(\symbf{R^3}\)}.
+Therefore, the set of column vectors \emph{do} form a \textbf{basis for
+\(\symbf{R^3}\)}.
 
 \newpage{}
 
@@ -291,14 +292,14 @@ We know that the column space of \(A\) is equivalent to:
 
 \(\mathrm{span}\left(\begin{bmatrix}1 \\ 0 \\ 0 \\ 0\end{bmatrix},\begin{bmatrix}1 \\ 0 \\ 0 \\ 0\end{bmatrix},\begin{bmatrix}0\\1\\0\\0\end{bmatrix},\begin{bmatrix}3\\-2\\0\\0\end{bmatrix},\begin{bmatrix}-\frac{11}{8}\\ \frac{7}{4}\\0\\0\end{bmatrix},\begin{bmatrix}\frac{11}{2}\\-5\\0\\0\end{bmatrix}\right)\)
 
-So, in order to get a basis for the column space, we just need to
+But we need to simplify that span some more. So, we just need to
 identify which vectors in the span are linearly independent. We can do
 this by looking at the rref of \(A\) and identifying which columns have
 pivots. The columns with pivots are the linearly independent columns,
 and the columns without pivots are linearly dependent. Therefore, the
-basis for the column space of \(A\) is:
+column space of \(A\) is:
 
-\(\left\{\begin{bmatrix}1 \\ 0 \\ 0 \\ 0\end{bmatrix},\begin{bmatrix}0 \\ 1 \\ 0 \\ 0\end{bmatrix}\right\}\)
+\(\left\{\begin{bmatrix}1 \\ 0 \\ 0 \\ 0\end{bmatrix},\begin{bmatrix}0 \\ 1 \\ 0 \\ 0\end{bmatrix}\right\} \Rightarrow \left\{\begin{bmatrix}2 \\ 4 \\ -4 \\ 0\end{bmatrix},\begin{bmatrix}1 \\ 6 \\ -10 \\ -12 \end{bmatrix}\right\}\)
 
 \newpage{}
 
@@ -312,16 +313,15 @@ basis for the column space of \(A\) is:
 
 We know that the row space of \(A\) is equivalent to:
 
-\(\mathrm{span}\left(\begin{bmatrix}1 \\ 1 \\ \frac{1}{2} \\ 2 \\ -\frac{1}{2} \\ 3\end{bmatrix},\begin{bmatrix}0 \\ 0 \\ 1 \\ -2 \\ \frac{7}{4} \\ -5\end{bmatrix},\begin{bmatrix}0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0\end{bmatrix} \right)\)
+\(\mathrm{span}\left(\begin{bmatrix}1 \\ 1 \\ 0 \\ 3 \\ -\frac{11}{8} \\ \frac{11}{2}\end{bmatrix},\begin{bmatrix}0 \\ 0 \\ 1 \\ -2 \\ \frac{7}{4} \\ -5\end{bmatrix},\begin{bmatrix}0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0\end{bmatrix} \right)\)
 
-So, in order to get a basis for the row space, we just need to identify
-which vectors in the span are linearly independent. We can do this by
-looking at the rref of \(A\) and identifying which rows are non-zero.
-The non-zero rows are the linearly independent rows, and the zero rows
-are linearly dependent. Therefore, the basis for the row space of \(A\)
-is:
+But we need to simplify that span some more. So, we just need to
+identify which vectors in the span are linearly independent. We can do
+this by looking at the rref of \(A\) and identifying which rows are
+non-zero. The non-zero rows are the linearly independent rows, and the
+zero rows are linearly dependent. Therefore, the row space of \(A\) is:
 
-\(\left\{\begin{bmatrix}1 \\ 1 \\ \frac{1}{2} \\ 2 \\ -\frac{1}{2} \\ 3\end{bmatrix},\begin{bmatrix}0 \\ 0 \\ 1 \\ -2 \\ \frac{7}{4} \\ -5\end{bmatrix}\right\}\)
+\(\left\{\begin{bmatrix}1 \\ 1 \\ 0 \\ 3 \\ -\frac{11}{8} \\ \frac{11}{2}\end{bmatrix},\begin{bmatrix}0 \\ 0 \\ 1 \\ -2 \\ \frac{7}{4} \\ -5\end{bmatrix}\right\}\)
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -428,21 +428,15 @@ We can decomponentize the vectors to get:
 
 \(\begin{bmatrix}-4 \\ 0 \\ 3\end{bmatrix}t + \begin{bmatrix}5 \\ 2 \\ 4\end{bmatrix}w + \begin{bmatrix}-3 \\ 1 \\ 0\end{bmatrix}s\)
 
-Since these vectors form the row space, we know that they have to be
-linearly independent. Therefore, we can use them as the rows of a matrix
-to get:
+But wait a minute! That literally looks like a span! We could just say
+this:
+
+\(\begin{bmatrix}-4 \\ 0 \\ 3\end{bmatrix}t + \begin{bmatrix}5 \\ 2 \\ 4\end{bmatrix}w + \begin{bmatrix}-3 \\ 1 \\ 0\end{bmatrix}s \Rightarrow \mathrm{span}\left(\begin{bmatrix}-4 \\ 0 \\ 3\end{bmatrix}, \begin{bmatrix}5 \\ 2 \\ 4\end{bmatrix}, \begin{bmatrix}-3 \\ 1 \\ 0\end{bmatrix}\right)\)
+
+Since we know the vectors span the row space, we can just put them into
+a matrix:
 
 \(\begin{bmatrix}-4 & 0 & 3 \\ 5 & 2 & 4 \\ -3 & 1 & 0\end{bmatrix}\)
-
-\emph{Bonus}: Provide for me a matrix that has this \ul{\textbf{null
-space}}.
-
-\(\begin{bmatrix}-4 \\ 0 \\ 3\end{bmatrix}t + \begin{bmatrix}5 \\ 2 \\ 4\end{bmatrix}w + \begin{bmatrix}-3 \\ 1 \\ 0\end{bmatrix}s \Rightarrow \begin{bmatrix}-4t+5w-3s \\ 2w + s \\ 3t + 4w\end{bmatrix}=\begin{bmatrix}x_1 \\ x_2 \\ x_3\end{bmatrix} =\)
-\systeme*[x_1x_2x_3tws]{x_1 + 4t + 5w -3s = 0, x_2 - 2w - s = 0, x_3 - 3t - 4w = 0}
-
-Which gives us the following matrix:
-
-\(\begin{bmatrix}1 & 4 & 5 & - 3\\ 0 & \end{bmatrix}\)
 
 \newpage{}
 
@@ -453,21 +447,53 @@ Which gives us the following matrix:
 explanation of how one statement implies the
 other.}\label{connect-the-following-equivalent-statements-together-with-an-explanation-of-how-one-statement-implies-the-other.}}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \(\symbf{A}x = b\) has exactly one solution for every \(n \times 1\)
-  matrix \(b\)
-\item
-  \(\det{(A)} \neq 0\)
-\item
-  The columns of \(A\) are linearly independent
-\item
-  The column vectors of \(A\) span \(R^n\)
-\item
-  \(A\) has nullity 0
-\end{enumerate}
+\(\det{(A)} \neq 0 \rightarrow A \text{ has nullity 0} \rightarrow \text{The columns of } A \text{ are linearly independent} \rightarrow\)
+
+\(\text{The column vectors of } A \text{ span } R^n \rightarrow \symbf{A}x = b \text{ has exactly one solution for every } n \times 1 \text{ matrix } b \rightarrow\)
+
+\hypertarget{symbfdeta-neq-0}{%
+\subsection{\texorpdfstring{\(\symbf{\det{(A)} \neq 0}\)}{\textbackslash symbf\{\textbackslash det\{(A)\} \textbackslash neq 0\}}}\label{symbfdeta-neq-0}}
+
+Because \(\det{(A)} \neq 0\), \(A\) is invertible and non-singular, so
+the nullity of \(A\) must be 0.
+
+\hypertarget{symbfa-has-nullity-0}{%
+\subsection{\texorpdfstring{\(\symbf{A}\) has nullity
+0}{\textbackslash symbf\{A\} has nullity 0}}\label{symbfa-has-nullity-0}}
+
+For any matrix with a nullity of 0, the null space, representing
+solutions to \(\symbf{A}x = \symbf{0}\), must only contain the trivial
+solution \(x = 0\), implying linear independence in the column space.
+
+\hypertarget{the-columns-of-symbfa-are-linearly-independent}{%
+\subsection{\texorpdfstring{The columns of \(\symbf{A}\) are linearly
+independent}{The columns of \textbackslash symbf\{A\} are linearly independent}}\label{the-columns-of-symbfa-are-linearly-independent}}
+
+Linearly independent columns ensure that the column vectors span the
+entire space \(R^n\). If there were linear dependence, it would mean
+redundancy in the columns and, consequently, the inability to span the
+entire column space.
+
+\hypertarget{the-column-vectors-of-symbfa-span-symbfrn}{%
+\subsection{\texorpdfstring{The column vectors of \(\symbf{A}\) span
+\(\symbf{R^n}\)}{The column vectors of \textbackslash symbf\{A\} span \textbackslash symbf\{R\^{}n\}}}\label{the-column-vectors-of-symbfa-span-symbfrn}}
+
+Because the column vectors of \(A\) span \(R^n\), any vector in \(R^n\)
+can be expressed as a unique linear combination of these columns.
+Therefore, the system \(\symbf{A}x = b\) has a unique solution for every
+\(n \times 1\) matrix \(b\).
+
+\hypertarget{symbfax-b-has-exactly-one-solution-for-every-symbfn-times-1-matrix-symbfb}{%
+\subsection{\texorpdfstring{\(\symbf{Ax = b}\) has exactly one solution
+for every \(\symbf{n \times 1}\) matrix
+\(\symbf{b}\)}{\textbackslash symbf\{Ax = b\} has exactly one solution for every \textbackslash symbf\{n \textbackslash times 1\} matrix \textbackslash symbf\{b\}}}\label{symbfax-b-has-exactly-one-solution-for-every-symbfn-times-1-matrix-symbfb}}
+
+If the determinant of \(A\) is zero, it implies that the matrix is
+singular, and the system of equations may have either no solution or
+infinitely many solutions, but it won't have a unique solution for every
+\(b\). Therefore, for the system \(\symbf{A}x = b\) to have a unique
+solution for every \(b\), the determinant of matrix \(A\) must be
+nonzero.
 
 
 

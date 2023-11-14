@@ -47,7 +47,7 @@ include-before-body:
 
 {{< pagebreak >}}
 
-# Does the following set of column vectors form a basis for $R^3$?:
+# Does the following set of column vectors form a basis for $\mathbf{R^3}$?
 $\symbf{\left\{ \ \ \begin{bmatrix}1 \\ 0 \\ 2\end{bmatrix}, \begin{bmatrix}3 \\ 2 \\ -4\end{bmatrix}, \begin{bmatrix}-3 \\ -5 \\ 1\end{bmatrix} \ \ \right\}}$
 
 Point out ***each*** of the requirements for whether a set is a basis and how these three vectors meet or do not meet each of them.
@@ -62,7 +62,7 @@ Let's put the vectors into a matrix and check the determinant:
 &= \det\left(\begin{bmatrix}2 & -5 \\ -4 & 1\end{bmatrix}\right)-3\det\left(\begin{bmatrix}0 & -5 \\ 2 & 1\end{bmatrix}\right) + (-3)\det\left(\begin{bmatrix}0 & 2 \\ 2 & -4\end{bmatrix}\right) \\
 &= (2\cdot 20)-3(0\cdot -10)-3(0\cdot -4) \\
 &= 40-3(0)-3(0) \\
-&= 40
+&= 40 
 \end{align*}
 Since $40 \ne 0$, the vectors are **linearly independent**.
 
@@ -73,7 +73,7 @@ Let's check the rank of the previous matrix:
 \end{align*}
 Since the rank is 3, the vectors **span $\symbf{R^3}$**.
 
-Therefore, the set of vectors form a **basis for $\symbf{R^3}$**.
+Therefore, the set of column vectors *do* form a **basis for $\symbf{R^3}$**.
 
 {{< pagebreak >}}
 
@@ -115,9 +115,9 @@ We know that the column space of $A$ is equivalent to:
 
 $\mathrm{span}\left(\begin{bmatrix}1 \\ 0 \\ 0 \\ 0\end{bmatrix},\begin{bmatrix}1 \\ 0 \\ 0 \\ 0\end{bmatrix},\begin{bmatrix}0\\1\\0\\0\end{bmatrix},\begin{bmatrix}3\\-2\\0\\0\end{bmatrix},\begin{bmatrix}-\frac{11}{8}\\ \frac{7}{4}\\0\\0\end{bmatrix},\begin{bmatrix}\frac{11}{2}\\-5\\0\\0\end{bmatrix}\right)$
 
-So, in order to get a basis for the column space, we just need to identify which vectors in the span are linearly independent. We can do this by looking at the rref of $A$ and identifying which columns have pivots. The columns with pivots are the linearly independent columns, and the columns without pivots are linearly dependent. Therefore, the basis for the column space of $A$ is:
+But we need to simplify that span some more. So, we just need to identify which vectors in the span are linearly independent. We can do this by looking at the rref of $A$ and identifying which columns have pivots. The columns with pivots are the linearly independent columns, and the columns without pivots are linearly dependent. Therefore, the column space of $A$ is:
 
-$\left\{\begin{bmatrix}1 \\ 0 \\ 0 \\ 0\end{bmatrix},\begin{bmatrix}0 \\ 1 \\ 0 \\ 0\end{bmatrix}\right\}$
+$\left\{\begin{bmatrix}1 \\ 0 \\ 0 \\ 0\end{bmatrix},\begin{bmatrix}0 \\ 1 \\ 0 \\ 0\end{bmatrix}\right\} \Rightarrow \left\{\begin{bmatrix}2 \\ 4 \\ -4 \\ 0\end{bmatrix},\begin{bmatrix}1 \\ 6 \\ -10 \\ -12 \end{bmatrix}\right\}$
 
 {{< pagebreak >}}
 
@@ -125,11 +125,11 @@ b. Set of vectors that form a basis for the row space of $A$
 
 We know that the row space of $A$ is equivalent to:
 
-$\mathrm{span}\left(\begin{bmatrix}1 \\ 1 \\ \frac{1}{2} \\ 2 \\ -\frac{1}{2} \\ 3\end{bmatrix},\begin{bmatrix}0 \\ 0 \\ 1 \\ -2 \\ \frac{7}{4} \\ -5\end{bmatrix},\begin{bmatrix}0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0\end{bmatrix} \right)$
+$\mathrm{span}\left(\begin{bmatrix}1 \\ 1 \\ 0 \\ 3 \\ -\frac{11}{8} \\ \frac{11}{2}\end{bmatrix},\begin{bmatrix}0 \\ 0 \\ 1 \\ -2 \\ \frac{7}{4} \\ -5\end{bmatrix},\begin{bmatrix}0 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0\end{bmatrix} \right)$
 
-So, in order to get a basis for the row space, we just need to identify which vectors in the span are linearly independent. We can do this by looking at the rref of $A$ and identifying which rows are non-zero. The non-zero rows are the linearly independent rows, and the zero rows are linearly dependent. Therefore, the basis for the row space of $A$ is:
+But we need to simplify that span some more. So, we just need to identify which vectors in the span are linearly independent. We can do this by looking at the rref of $A$ and identifying which rows are non-zero. The non-zero rows are the linearly independent rows, and the zero rows are linearly dependent. Therefore, the row space of $A$ is:
 
-$\left\{\begin{bmatrix}1 \\ 1 \\ \frac{1}{2} \\ 2 \\ -\frac{1}{2} \\ 3\end{bmatrix},\begin{bmatrix}0 \\ 0 \\ 1 \\ -2 \\ \frac{7}{4} \\ -5\end{bmatrix}\right\}$
+$\left\{\begin{bmatrix}1 \\ 1 \\ 0 \\ 3 \\ -\frac{11}{8} \\ \frac{11}{2}\end{bmatrix},\begin{bmatrix}0 \\ 0 \\ 1 \\ -2 \\ \frac{7}{4} \\ -5\end{bmatrix}\right\}$
 
 c. Set of vectors that form a basis for the null space of $A$
 
@@ -189,26 +189,42 @@ We can decomponentize the vectors to get:
 
 $\begin{bmatrix}-4 \\ 0 \\ 3\end{bmatrix}t + \begin{bmatrix}5 \\ 2 \\ 4\end{bmatrix}w + \begin{bmatrix}-3 \\ 1 \\ 0\end{bmatrix}s$
 
-Since these vectors form the row space, we know that they have to be linearly independent. Therefore, we can use them as the rows of a matrix to get:
+But wait a minute! That literally looks like a span! We could just say this:
+
+$\begin{bmatrix}-4 \\ 0 \\ 3\end{bmatrix}t + \begin{bmatrix}5 \\ 2 \\ 4\end{bmatrix}w + \begin{bmatrix}-3 \\ 1 \\ 0\end{bmatrix}s \Rightarrow \mathrm{span}\left(\begin{bmatrix}-4 \\ 0 \\ 3\end{bmatrix}, \begin{bmatrix}5 \\ 2 \\ 4\end{bmatrix}, \begin{bmatrix}-3 \\ 1 \\ 0\end{bmatrix}\right)$
+
+Since we know the vectors span the row space, we can just put them into a matrix:
 
 $\begin{bmatrix}-4 & 0 & 3 \\ 5 & 2 & 4 \\ -3 & 1 & 0\end{bmatrix}$
-
-*Bonus*: Provide for me a matrix that has this [**null space**]{.underline}.
-
-$\begin{bmatrix}-4 \\ 0 \\ 3\end{bmatrix}t + \begin{bmatrix}5 \\ 2 \\ 4\end{bmatrix}w + \begin{bmatrix}-3 \\ 1 \\ 0\end{bmatrix}s \Rightarrow \begin{bmatrix}-4t+5w-3s \\ 2w + s \\ 3t + 4w\end{bmatrix}=\begin{bmatrix}x_1 \\ x_2 \\ x_3\end{bmatrix} =$ \systeme*[x_1x_2x_3tws]{x_1 + 4t + 5w -3s = 0, x_2 - 2w - s = 0, x_3 - 3t - 4w = 0}
-
-Which gives us the following matrix:
-
-$\begin{bmatrix}1 & 4 & 5 & - 3\\ 0 & 1 & -2 & -1 \end{bmatrix}$
 
 {{< pagebreak >}}
 
 {{< pagebreak >}}
 
 # Connect the following equivalent statements together with an explanation of how one statement implies the other.
-1. $\symbf{A}x = b$ has exactly one solution for every $n \times 1$ matrix $b$
-2. $\det{(A)} \neq 0$ 
-3. The columns of $A$ are linearly independent
-4. The column vectors of $A$ span $R^n$
-5. $A$ has nullity 0
+$\det{(A)} \neq 0 \rightarrow A \text{ has nullity 0} \rightarrow \text{The columns of } A \text{ are linearly independent} \rightarrow$
+
+$\text{The column vectors of } A \text{ span } R^n \rightarrow \symbf{A}x = b \text{ has exactly one solution for every } n \times 1 \text{ matrix } b \rightarrow$
+
+## $\symbf{\det{(A)} \neq 0}$ 
+Because $\det{(A)} \neq 0$, $A$ is invertible and non-singular, so the nullity of $A$ must be 0.
+
+## $\symbf{A}$ has nullity 0
+For any matrix with a nullity of 0, the null space, representing solutions to $\symbf{A}x = \symbf{0}$, must only contain the trivial solution $x = 0$, implying linear independence in the column space.
+
+## The columns of $\symbf{A}$ are linearly independent
+Linearly independent columns ensure that the column vectors span the entire space $R^n$. If there were linear dependence, it would mean redundancy in the columns and, consequently, the inability to span the entire column space.
+
+## The column vectors of $\symbf{A}$ span $\symbf{R^n}$
+Because the column vectors of $A$ span $R^n$, any vector in $R^n$ can be expressed as a unique linear combination of these columns. Therefore, the system $\symbf{A}x = b$ has a unique solution for every $n \times 1$ matrix $b$.
+
+## $\symbf{Ax = b}$ has exactly one solution for every $\symbf{n \times 1}$ matrix $\symbf{b}$
+If the determinant of $A$ is zero, it implies that the matrix is singular, and the system of equations may have either no solution or infinitely many solutions, but it won't have a unique solution for every $b$. Therefore, for the system $\symbf{A}x = b$ to have a unique solution for every $b$, the determinant of matrix $A$ must be nonzero.
+
+
+
+
+
+
+
 
